@@ -11,8 +11,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    typedRoutes: true,
+  typedRoutes: true,
+  turbopack: {
+    root: "./",
   },
 };
 

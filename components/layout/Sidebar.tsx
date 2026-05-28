@@ -8,12 +8,12 @@ import { motion } from "framer-motion";
 import { signOut } from "@/app/(auth)/login/actions";
 
 interface NavItem {
-  href: string;
+  href: "/dashboard" | "/dashboard/services" | "/dashboard/settings";
   label: string;
   icon: React.ReactNode;
 }
 
-const navItems: NavItem[] = [
+const navItems = [
   {
     href: "/dashboard",
     label: "Pipeline",
@@ -45,7 +45,7 @@ const navItems: NavItem[] = [
       </svg>
     ),
   },
-];
+] as const satisfies readonly NavItem[];
 
 interface SidebarProps {
   businessName: string;
