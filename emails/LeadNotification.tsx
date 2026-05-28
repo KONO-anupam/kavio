@@ -368,7 +368,7 @@ export function LeadNotification({
                 lineHeight: "1.6",
               }}
             >
-              This notification was sent by BookingOS on behalf of {businessName}.
+              This notification was sent by Kavio on behalf of {businessName}.
               <br />
               Manage notification preferences in your{" "}
               <Link href={`${dashboardUrl}/settings`} style={{ color: colors.textMuted }}>

@@ -411,7 +411,7 @@ export function BookingConfirmation({
                 margin: 0,
               }}
             >
-              © {new Date().getFullYear()} {businessName}. Powered by BookingOS.
+              © {new Date().getFullYear()} {businessName}. Powered by Kavio.
             </Text>
           </Section>
         </Container>

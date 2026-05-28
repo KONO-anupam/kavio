@@ -22,8 +22,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s — BookingOS",
-    default: "BookingOS",
+    template: "%s — Kavio",
+    default: "Kavio",
   },
   description:
     "Scheduling and lead management for local service businesses.",

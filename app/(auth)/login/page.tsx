@@ -86,7 +86,7 @@ export default function LoginPage() {
             className="text-2xl mb-1"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            BookingOS
+            Kavio
           </h1>
           <p style={{ color: "var(--color-text-muted)", fontSize: "0.875rem" }}>
             Operational control for your business
