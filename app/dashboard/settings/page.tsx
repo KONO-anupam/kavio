@@ -167,7 +167,7 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
               fontFamily: "monospace",
             }}
           >
-            {process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"}/book/{profile.slug}
+            {process.env.NEXT_PUBLIC_APP_URL }/book/{profile.slug}
           </code>
           <a
             href={`/book/${profile.slug}`}

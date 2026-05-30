@@ -60,7 +60,7 @@ export async function signInWithMagicLink(
     return { success: false, error: "A valid email address is required." };
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
   const { error } = await supabase.auth.signInWithOtp({
     email: email.trim(),

@@ -152,14 +152,14 @@ export function computeAvailableSlots(params: AvailabilityParams): TimeSlot[] {
 
   // Build the open and close Date objects in the tenant timezone,
   // then convert to UTC for comparison
-  let openLocal = setMilliseconds(
+  const openLocal = setMilliseconds(
     setSeconds(
       setMinutes(setHours(localDate, openTime.hours), openTime.minutes),
       0
     ),
     0
   );
-  let closeLocal = setMilliseconds(
+  const closeLocal = setMilliseconds(
     setSeconds(
       setMinutes(setHours(localDate, closeTime.hours), closeTime.minutes),
       0

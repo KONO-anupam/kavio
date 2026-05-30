@@ -18,20 +18,6 @@ interface SlotPickerProps {
   selected: TimeSlot | null;
 }
 
-function groupSlotsByHour(slots: TimeSlot[], timezone: string): Map<string, TimeSlot[]> {
-  const grouped = new Map<string, TimeSlot[]>();
-  for (const slot of slots) {
-    const hour = new Date(slot.start).toLocaleString("en-US", {
-      hour: "numeric",
-      hour12: true,
-      timeZone: timezone,
-    });
-    const existing = grouped.get(hour) ?? [];
-    existing.push(slot);
-    grouped.set(hour, existing);
-  }
-  return grouped;
-}
 
 export function SlotPicker({
   tenantId,

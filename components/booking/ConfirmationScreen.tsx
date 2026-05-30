@@ -20,7 +20,6 @@ export function ConfirmationScreen({
   service,
   slot,
   timezone,
-  customerName,
   customerEmail,
   bookingId,
   businessName,
