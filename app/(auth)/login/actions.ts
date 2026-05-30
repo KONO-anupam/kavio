@@ -1,4 +1,3 @@
-// app/(auth)/login/actions.ts
 
 "use server";
 
@@ -29,8 +28,10 @@ export async function signInWithPassword(
   });
 
   if (error) {
-    // Normalize Supabase error messages to match our copy standard
-    if (error.message.includes("Invalid login credentials")) {
+    if (
+      error.message.includes("Invalid login credentials") ||
+      error.message.includes("invalid_credentials")
+    ) {
       return {
         success: false,
         error: "The credentials provided do not match our records.",
@@ -47,6 +48,63 @@ export async function signInWithPassword(
 
   revalidatePath("/", "layout");
   redirect("/dashboard");
+}
+
+export async function signUp(
+  formData: FormData
+): Promise<ActionResult> {
+  const supabase = await createClient();
+
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const businessName = formData.get("business_name");
+
+  if (
+    typeof email !== "string" ||
+    typeof password !== "string" ||
+    typeof businessName !== "string"
+  ) {
+    return { success: false, error: "Invalid form submission." };
+  }
+
+  if (!email.trim()) {
+    return { success: false, error: "Email address is required." };
+  }
+
+  if (!businessName.trim()) {
+    return { success: false, error: "Business name is required." };
+  }
+
+  if (password.length < 8) {
+    return { success: false, error: "Password must be at least 8 characters." };
+  }
+
+  const { error } = await supabase.auth.signUp({
+    email: email.trim(),
+    password,
+    options: {
+      // handle_new_user trigger reads this to set profiles.business_name
+      data: { business_name: businessName.trim() },
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+    },
+  });
+
+  if (error) {
+    if (
+      error.message.includes("already registered") ||
+      error.message.includes("already been registered")
+    ) {
+      return {
+        success: false,
+        error: "An account with this email already exists. Sign in instead.",
+      };
+    }
+    return { success: false, error: error.message };
+  }
+
+  // Return success — the page shows a "check your inbox" state.
+  // If email confirmation is disabled in Supabase, the user can sign in immediately.
+  return { success: true, data: undefined };
 }
 
 export async function signInWithMagicLink(
